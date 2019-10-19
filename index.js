@@ -1,6 +1,5 @@
 'use strict'
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config()
 
 const mongoose = require('mongoose');
 const config = require('./config')
@@ -16,7 +15,7 @@ const favorites = require('./routes/favorites')
 
 
 
-mongoose.connect(config.DATABASE_URI, {useNewUrlParser:true,  useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/your-app-name', {useNewUrlParser:true,  useUnifiedTopology: true})
     .then(() => console.log('Now connected to MongoDB!'))
     .catch(err => console.error('Something went wrong', err));
 
